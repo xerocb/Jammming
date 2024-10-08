@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './App.module.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+import styles from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <SearchBar />
       <SearchResults />
       <Playlist />
