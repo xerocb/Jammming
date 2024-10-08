@@ -2,10 +2,12 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Tracklist.module.css';
 
-function Tracklist() {
+function Tracklist({ songs=[] }) {
+    const tracks = songs.map(song => <Track song={song} />);
+
     return (
         <div>
-            <Track />
+            {tracks}
         </div>
     );
 }

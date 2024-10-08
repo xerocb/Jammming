@@ -2,10 +2,10 @@ import React from 'react';
 import Tracklist from '../Tracklist/Tracklist'
 import styles from './SearchResults.module.css';
 
-function SearchResults() {
+function SearchResults({ songs }) {
     return (
         <div>
-            <Tracklist />
+            <Tracklist songs={songs} />
         </div>
     );
 }
