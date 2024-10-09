@@ -1,5 +1,5 @@
 const clientId = 'aab86b4070b64918a4343c4d9d9e78d2';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://jammmingcb.netlify.app/';
 const scope = 'playlist-modify-public';
 const baseUrl = 'https://api.spotify.com/v1';
 let accessToken;
