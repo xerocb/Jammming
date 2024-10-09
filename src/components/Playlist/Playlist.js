@@ -16,7 +16,8 @@ function Playlist(props) {
             <div className={styles.name}>
                 <input 
                     type='text' 
-                    value={props.name} 
+                    value={props.name}
+                    placeholder='Name your new playlist'
                     onChange={handleChange} />
             </div>
             <Tracklist 
