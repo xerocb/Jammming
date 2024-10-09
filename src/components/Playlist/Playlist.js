@@ -7,8 +7,13 @@ function Playlist(props) {
         props.onNameChange(target.value);
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(props.songs.map(song => song.uri));
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <input 
                 type='text' 
                 value={props.name} 
