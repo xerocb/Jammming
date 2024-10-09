@@ -55,9 +55,10 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={styles.app}>
+      <h1>Ja<em>mmm</em>ing</h1>
       <SearchBar onSearch={searchForTracks}/>
-      <div>
+      <div className={styles.tracklists}>
         <SearchResults 
           tracks={searchResults}
           onAdd={addTrack} />

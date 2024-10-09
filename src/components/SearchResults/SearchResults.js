@@ -2,9 +2,10 @@ import React from 'react';
 import Tracklist from '../Tracklist/Tracklist'
 import styles from './SearchResults.module.css';
 
-function SearchResults({ tracks, onAdd, onSearch }) {
+function SearchResults({ tracks, onAdd }) {
     return (
-        <div>
+        <div className={styles.results}>
+            <h2>Results</h2>
             <Tracklist 
                 tracks={tracks}
                 onAdd={onAdd}

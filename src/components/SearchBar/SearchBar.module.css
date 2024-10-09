@@ -1,0 +1,23 @@
+.form input {
+    display: block;
+    margin: 2% auto;
+}
+
+.form input[type='text'] {
+    font-size: 30px;
+}
+
+.form input[type='submit'] {
+    background-color: purple;
+    border: 1px solid purple;
+    border-radius: 25px;
+    font-size: 30px;
+    padding: 1% 3%;
+    color: white;
+    text-transform: uppercase;
+}
+
+.form input[type='submit']:hover {
+    background-color: #410072;
+    cursor: pointer;
+}

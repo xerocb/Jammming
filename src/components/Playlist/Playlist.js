@@ -12,16 +12,20 @@ function Playlist(props) {
     }
 
     return (
-        <div>
-            <input 
-                type='text' 
-                value={props.name} 
-                onChange={handleChange} />
+        <div className={styles.playlist}>
+            <div className={styles.name}>
+                <input 
+                    type='text' 
+                    value={props.name} 
+                    onChange={handleChange} />
+            </div>
             <Tracklist 
                 tracks={props.tracks}
                 onRemove={props.onRemove}
                 inPlaylist={true} />
-            <button onClick={handleClick}>Save to Spotify</button>
+            <div className={styles.button}>
+                <button onClick={handleClick}>Save to Spotify</button>
+            </div>
         </div>
     );
 }

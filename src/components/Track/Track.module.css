@@ -1,0 +1,48 @@
+.track {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+.track h3 {
+    padding: 0 1%;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.track p {
+    margin: 0;
+    padding: 0 1%;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.info {
+    flex: 9 1 0;
+    background-color: purple;
+    color: white;
+    padding-bottom: 2%;
+}
+
+.album {
+    font-style: italic;
+}
+
+.button {
+    flex: 1 1 0;
+    background-color: purple;
+    opacity: 0.9;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button button {
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    font-size: 30px;
+}
+
+.button button:hover {
+    font-weight: bolder;
+}

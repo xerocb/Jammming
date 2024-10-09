@@ -1,0 +1,17 @@
+.app {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app h1 {
+    font-size: 100px;
+    margin-top: 0;
+    text-align: center;
+    background-color: purple;
+    color: white;
+}
+
+.tracklists {
+    display: flex;
+    margin: 2%;
+    margin-bottom: 0;
+}

@@ -1,0 +1,13 @@
+.results {
+    flex: 1 1 0;
+    margin-right: 2%;
+}
+
+.results h2 {
+    background-color: purple;
+    margin: 0;
+    padding: 2% 1%;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}

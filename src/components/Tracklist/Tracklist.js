@@ -10,7 +10,8 @@ function Tracklist({ tracks=[], onAdd, onRemove, inPlaylist }) {
             key={track.id}
             onAdd={onAdd}
             onRemove={onRemove}
-            inPlaylist={inPlaylist} />
+            inPlaylist={inPlaylist}
+            albumCover={track.albumCover} />
         );
     });
 
