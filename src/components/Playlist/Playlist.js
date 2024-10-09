@@ -9,7 +9,7 @@ function Playlist(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(props.songs.map(song => song.uri));
+        console.log(props.tracks.map(track => track.uri));
     }
 
     return (
@@ -19,7 +19,7 @@ function Playlist(props) {
                 value={props.name} 
                 onChange={handleChange} />
             <Tracklist 
-                songs={props.songs}
+                tracks={props.tracks}
                 onRemove={props.onRemove}
                 inPlaylist={true} />
             <input 

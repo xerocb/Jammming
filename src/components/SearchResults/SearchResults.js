@@ -2,11 +2,11 @@ import React from 'react';
 import Tracklist from '../Tracklist/Tracklist'
 import styles from './SearchResults.module.css';
 
-function SearchResults({ songs, onAdd }) {
+function SearchResults({ tracks, onAdd, onSearch }) {
     return (
         <div>
             <Tracklist 
-                songs={songs}
+                tracks={tracks}
                 onAdd={onAdd}
                 inPlaylist={false} />
         </div>

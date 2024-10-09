@@ -2,12 +2,12 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Tracklist.module.css';
 
-function Tracklist({ songs=[], onAdd, onRemove, inPlaylist }) {
-    const tracks = songs.map((song) => {
+function Tracklist({ tracks=[], onAdd, onRemove, inPlaylist }) {
+    const tracksJsx = tracks.map((track) => {
         return (
         <Track 
-            song={song} 
-            key={song.id}
+            track={track} 
+            key={track.id}
             onAdd={onAdd}
             onRemove={onRemove}
             inPlaylist={inPlaylist} />
@@ -16,7 +16,7 @@ function Tracklist({ songs=[], onAdd, onRemove, inPlaylist }) {
 
     return (
         <div>
-            {tracks}
+            {tracksJsx}
         </div>
     );
 }

@@ -3,38 +3,54 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import styles from './App.module.css';
-import { MockSongs } from '../MockSongs';
+import Spotify, { accessDenied } from '../../util/Spotify';
 
 function App() {
-  const [searchResults, setSearchResults] = React.useState(MockSongs);
+  const [searchResults, setSearchResults] = React.useState([]);
   const [playlistName, setPlaylistName] = React.useState('New Playlist');
-  const [playlistSongs, setPlaylistSongs] = React.useState(MockSongs);
+  const [playlistTracks, setPlaylistTracks] = React.useState([]);
 
   const updatePlaylistName = (name) => {
     setPlaylistName(name);
   };
 
-  const addTrack = (song) => {
-    if (playlistSongs.some(prev => prev.id === song.id)) {
+  const addTrack = (track) => {
+    if (playlistTracks.some(prev => prev.id === track.id)) {
       return;
     }
 
-    setPlaylistSongs(prev => [...prev, song]);
-  }
+    setPlaylistTracks(prev => [...prev, track]);
+  };
 
   const removeTrack = (id) => {
-    setPlaylistSongs(prev => prev.filter(song => song.id != id));
+    setPlaylistTracks(prev => prev.filter(track => track.id != id));
+  };
+
+  const searchForTracks = async (query) => {
+    if (!query)
+      return;
+
+    const tracks = await Spotify.search(query);
+    setSearchResults(tracks);
+  };
+
+  const savePlaylist = () => {};
+
+  Spotify.getToken();
+
+  if (accessDenied) {
+    return <p>Spotify access denied by user. Refresh and allow access to proceed.</p>;
   }
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar onSearch={searchForTracks}/>
       <SearchResults 
-        songs={searchResults}
+        tracks={searchResults}
         onAdd={addTrack} />
       <Playlist 
         name={playlistName} 
-        songs={playlistSongs} 
+        tracks={playlistTracks} 
         onNameChange={updatePlaylistName}
         onRemove={removeTrack} />
     </div>

@@ -1,22 +1,22 @@
 import React from 'react';
 import styles from './Track.module.css';
 
-function Track({ song, onAdd, onRemove, inPlaylist }) {
+function Track({ track, onAdd, onRemove, inPlaylist }) {
     const handleClick = (event) => {
         event.preventDefault();
 
         if (inPlaylist) {
-            onRemove(song.id);
+            onRemove(track.id);
         } else {
-            onAdd(song);
+            onAdd(track);
         }
     };
 
     return (
         <div>
-            <p>{song.name}</p>
-            <p>{song.artist}</p>
-            <p>{song.album}</p>
+            <p>{track.name}</p>
+            <p>{track.artist}</p>
+            <p>{track.album}</p>
             <button onClick={handleClick}>{inPlaylist ? '-' : '+'}</button>
         </div>
     );
