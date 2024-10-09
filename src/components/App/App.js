@@ -50,6 +50,23 @@ function App() {
 
   Spotify.getToken();
 
+  const pauseOtherAudios = () => {
+    const audios = document.querySelectorAll('audio');
+    audios.forEach((audio) => {
+      audios.forEach((otherAudio) => {
+        if (otherAudio !== audio) {
+          otherAudio.pause();
+        }
+      });
+    });
+  };
+
+  React.useEffect(() => {
+    const audios = document.querySelectorAll('audio');
+    audios.forEach((audio) => audio.addEventListener('play', pauseOtherAudios));
+    return audios.forEach((audio) => audio.removeEventListener('play', pauseOtherAudios));
+  }, [searchResults, playlistTracks]);
+
   if (accessDenied) {
     return <p>Spotify access denied by user. Refresh and allow access to proceed.</p>;
   }
