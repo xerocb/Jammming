@@ -50,13 +50,15 @@ const Spotify = {
             });
             if (response.ok) {
                 const jsonResponse = await response.json();
+                console.log(jsonResponse);
                 return jsonResponse.tracks.items.map(track => ({
                     id: track.id,
                     name: track.name,
                     artist: track.artists.map(artist => artist.name).join(', '),
                     album: track.album.name,
                     uri: track.uri,
-                    albumCover: `url(${track.album.images[0].url})`
+                    albumCover: `url(${track.album.images[0].url})`,
+                    previewUrl: track.preview_url
                 }));
             }
             throw new Error('Search Request Error');

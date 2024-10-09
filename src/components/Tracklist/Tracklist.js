@@ -11,7 +11,8 @@ function Tracklist({ tracks=[], onAdd, onRemove, inPlaylist }) {
             onAdd={onAdd}
             onRemove={onRemove}
             inPlaylist={inPlaylist}
-            albumCover={track.albumCover} />
+            albumCover={track.albumCover}
+            previewUrl={track.previewUrl} />
         );
     });
 

@@ -1,12 +1,13 @@
 .app {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #c6b9b9;
 }
 
 .app h1 {
     font-size: 100px;
     margin-top: 0;
     text-align: center;
-    background-color: purple;
+    background-color: #410072;
     color: white
 }
 

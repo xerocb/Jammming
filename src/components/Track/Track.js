@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Track.module.css';
 
-function Track({ track, onAdd, onRemove, inPlaylist, albumCover }) {
+function Track({ track, onAdd, onRemove, inPlaylist, albumCover, previewUrl }) {
     const handleClick = (event) => {
         event.preventDefault();
 
@@ -19,12 +19,23 @@ function Track({ track, onAdd, onRemove, inPlaylist, albumCover }) {
         backgroundRepeat: 'no-repeat',
     };
 
+    const audioCheck = () => {
+        if (previewUrl) {
+            return <audio controls src={previewUrl}></audio>;
+        } else {
+            return <p>Preview not available.</p>;
+        }
+    };
+
     return (
         <div className={styles.track}>
             <div style={infoStyle} className={styles.info}>
                 <h3>{track.name}</h3>
                 <p className={styles.artist}>{track.artist}</p>
                 <p className={styles.album}>{track.album}</p>
+                <div className={styles.audio}>
+                    {audioCheck()}
+                </div>
             </div>
             <div className={styles.button}>
                 <button onClick={handleClick}>{inPlaylist ? '-' : '+'}</button>
