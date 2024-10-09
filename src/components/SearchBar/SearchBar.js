@@ -18,7 +18,7 @@ function SearchBar({ onSearch }) {
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
-            <input type='text' value={query} onChange={handleChange} />
+            <input type='text' value={query} onChange={handleChange} placeholder='Search for a song' />
             <input type='submit' value='Search' />
         </form>
     );
