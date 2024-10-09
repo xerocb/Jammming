@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <h1>Ja<em>mmm</em>ing</h1>
+      <h1>Jammming</h1>
       <SearchBar onSearch={searchForTracks}/>
       <div className={styles.tracklists}>
         <SearchResults 
