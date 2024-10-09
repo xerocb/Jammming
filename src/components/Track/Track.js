@@ -37,8 +37,8 @@ function Track({ track, onAdd, onRemove, inPlaylist, albumCover, previewUrl }) {
                     {audioCheck()}
                 </div>
             </div>
-            <div className={styles.button}>
-                <button onClick={handleClick}>{inPlaylist ? '-' : '+'}</button>
+            <div onClick={handleClick} className={styles.button}>
+                {inPlaylist ? '-' : '+'}
             </div>
         </div>
     );

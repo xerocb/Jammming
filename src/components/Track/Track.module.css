@@ -44,16 +44,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.button button {
-    background-color: transparent;
-    border: transparent;
     color: white;
     font-size: 30px;
 }
 
-.button button:hover {
+.button:hover {
     font-weight: bolder;
     cursor: pointer;
 }
