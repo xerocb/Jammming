@@ -1,6 +1,6 @@
 const clientId = 'aab86b4070b64918a4343c4d9d9e78d2';
 const redirectUri = 'http://localhost:3000/';
-const scope = 'playlist-modify-public user-library-read';
+const scope = 'playlist-modify-public';
 const baseUrl = 'https://api.spotify.com/v1';
 let accessToken;
 export let accessDenied = false;
@@ -127,10 +127,6 @@ const Spotify = {
         } catch (e) {
             console.log(e);
         }
-    },
-
-    getRandomAlbumCover() {
-        
     }
 };
 

@@ -23,7 +23,7 @@ function App() {
   };
 
   const removeTrack = (id) => {
-    setPlaylistTracks(prev => prev.filter(track => track.id != id));
+    setPlaylistTracks(prev => prev.filter(track => track.id !== id));
   };
 
   const searchForTracks = async (query) => {
@@ -55,7 +55,7 @@ function App() {
   }
 
   return (
-    <div className={styles.app}>
+    <div>
       <SearchBar onSearch={searchForTracks}/>
       <div>
         <SearchResults 
