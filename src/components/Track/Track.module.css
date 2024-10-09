@@ -55,4 +55,5 @@
 
 .button button:hover {
     font-weight: bolder;
+    cursor: pointer;
 }
