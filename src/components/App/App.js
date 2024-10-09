@@ -7,7 +7,7 @@ import Spotify, { accessDenied } from '../../util/Spotify';
 
 function App() {
   const [searchResults, setSearchResults] = React.useState([]);
-  const [playlistName, setPlaylistName] = React.useState('New Playlist');
+  const [playlistName, setPlaylistName] = React.useState('');
   const [playlistTracks, setPlaylistTracks] = React.useState([]);
 
   const updatePlaylistName = (name) => {
