@@ -50,21 +50,19 @@ function App() {
 
   Spotify.getToken();
 
-  const pauseOtherAudios = () => {
+  const pauseOtherAudios = ({ target }) => {
     const audios = document.querySelectorAll('audio');
     audios.forEach((audio) => {
-      audios.forEach((otherAudio) => {
-        if (otherAudio !== audio) {
-          otherAudio.pause();
-        }
-      });
+      if (audio !== target) {
+        audio.pause();
+      };
     });
   };
 
   React.useEffect(() => {
     const audios = document.querySelectorAll('audio');
     audios.forEach((audio) => audio.addEventListener('play', pauseOtherAudios));
-    return audios.forEach((audio) => audio.removeEventListener('play', pauseOtherAudios));
+    return () => audios.forEach((audio) => audio.removeEventListener('play', pauseOtherAudios));
   }, [searchResults, playlistTracks]);
 
   if (accessDenied) {
