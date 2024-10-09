@@ -1,6 +1,7 @@
 const clientId = 'aab86b4070b64918a4343c4d9d9e78d2';
 const redirectUri = 'http://localhost:3000/';
-const baseUrl = 'https://api.spotify.com/v1'
+const scope = 'playlist-modify-public user-library-read';
+const baseUrl = 'https://api.spotify.com/v1';
 let accessToken;
 export let accessDenied = false;
 
@@ -20,7 +21,7 @@ const Spotify = {
             accessToken = accessTokenInUrl[1];
             const expiresIn = expiresInInUrl[1];
             window.setTimeout(() => accessToken = '', expiresIn * 1000);
-            window.setTimeout(() => window.history.pushState('Access Token', null, '/'), expiresIn * 1000);
+            window.history.pushState('Access Token', null, '/');
             return accessToken;
         } else {
             const errorInUrl = window.location.href.match(/error=([^&]*)/);
@@ -30,14 +31,14 @@ const Spotify = {
                 window.history.pushState('Denied', null, '/');
             } else {
                 accessDenied = false;
-                const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}`;
+                const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}&scope=${scope}`;
                 window.location = accessUrl; 
             }
         }
     },
 
     async search(query) {
-        const accessToken = this.accessToken ? this.accessToken : Spotify.getToken();
+        const accessToken = Spotify.getToken();
         const type = 'track';
         const endpoint = `${baseUrl}/search?q=${query}&type=${type}`;
 
@@ -61,6 +62,75 @@ const Spotify = {
         } catch (e) {
             console.log(e);
         }
+    },
+
+    async savePlaylist(name, uris) {
+        const accessToken = Spotify.getToken();
+        const userIdEndpoint = `${baseUrl}/me`;
+
+        try {
+            const userIdResponse = await fetch(userIdEndpoint, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            });
+            if (userIdResponse.ok) {
+                return Spotify.createPlaylist(userIdResponse, name, uris);
+            }
+            throw new Error('User Id Error');
+        } catch (e) {
+            console.log(e);
+        }
+    },
+
+    async createPlaylist(userIdResponse, name, uris) {
+        const accessToken = Spotify.getToken();
+        const jsonUserIdResponse = await userIdResponse.json();
+        const userId = jsonUserIdResponse.id;
+        const createPlaylistEndpoint = `${baseUrl}/users/${userId}/playlists`;
+
+        try {
+            const createPlaylistResponse = await fetch(createPlaylistEndpoint, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                },
+                method: 'POST',
+                body: JSON.stringify({ name: name })
+            });
+            if (createPlaylistResponse.ok) {
+                return Spotify.addTracksToPlaylist(createPlaylistResponse, uris);
+            }
+            throw new Error('Create Playlist Error');
+        } catch (e) {
+            console.log(e);
+        }
+    },
+
+    async addTracksToPlaylist(createPlaylistResponse, uris) {
+        const accessToken = Spotify.getToken();
+        const jsonCreatePlaylistResponse = await createPlaylistResponse.json();
+        const playlistId = jsonCreatePlaylistResponse.id;
+        const addTracksEndpoint = `${baseUrl}/playlists/${playlistId}/tracks`;
+
+        try {
+            const addTracksResponse = await fetch(addTracksEndpoint, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                },
+                method: 'POST',
+                body: JSON.stringify({ uris: uris })
+            });
+            if (addTracksResponse.ok) {
+                return true;
+            }
+            throw new Error('Add Tracks to Playlist Error');
+        } catch (e) {
+            console.log(e);
+        }
+    },
+
+    getRandomAlbumCover() {
+        
     }
 };
 

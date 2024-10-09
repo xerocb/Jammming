@@ -34,7 +34,19 @@ function App() {
     setSearchResults(tracks);
   };
 
-  const savePlaylist = () => {};
+  const savePlaylist = async (name, uris) => {
+    if (!name || uris.length === 0) {
+      alert('Error: Must include a playlist name and at least one track');
+      return;
+    }
+
+    const success = await Spotify.savePlaylist(name, uris);
+    if (success) {
+      alert('Playlist Saved');
+    } else {
+      alert('Error: Check console');
+    }
+  };
 
   Spotify.getToken();
 
@@ -43,16 +55,19 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={styles.app}>
       <SearchBar onSearch={searchForTracks}/>
-      <SearchResults 
-        tracks={searchResults}
-        onAdd={addTrack} />
-      <Playlist 
-        name={playlistName} 
-        tracks={playlistTracks} 
-        onNameChange={updatePlaylistName}
-        onRemove={removeTrack} />
+      <div>
+        <SearchResults 
+          tracks={searchResults}
+          onAdd={addTrack} />
+        <Playlist 
+          name={playlistName} 
+          tracks={playlistTracks} 
+          onNameChange={updatePlaylistName}
+          onRemove={removeTrack}
+          onSave={savePlaylist} />
+      </div>
     </div>
   );
 }

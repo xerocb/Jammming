@@ -7,13 +7,12 @@ function Playlist(props) {
         props.onNameChange(target.value);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(props.tracks.map(track => track.uri));
+    const handleClick = (event) => {
+        props.onSave(props.name, props.tracks.map(track => track.uri));
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div>
             <input 
                 type='text' 
                 value={props.name} 
@@ -22,10 +21,8 @@ function Playlist(props) {
                 tracks={props.tracks}
                 onRemove={props.onRemove}
                 inPlaylist={true} />
-            <input 
-                type='submit' 
-                value='Save to Spotify' />
-        </form>
+            <button onClick={handleClick}>Save to Spotify</button>
+        </div>
     );
 }
 
